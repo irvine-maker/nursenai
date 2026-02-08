@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Valentine 💕</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff4d6d, #c9184a);
+      font-family: 'Comic Sans MS', cursive;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 3rem;
+    }
+
+    .messages {
+      margin: 30px auto;
+      max-width: 600px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #c9184a;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatUp 4s linear forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-600px);
+      }
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: #c9184a;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      font-size: 1.3rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Valentine’s Day Love</h1>
+
+  <div class="messages">
+    <p>You make the world brighter just by being you</p>
+    <p>Every smile of yours feels like a warm hug </p>
+    <p>You are loved more than words can ever say </p>
+    <p>Today and always, you matter </p>
+  </div>
+
+  <button onclick="showLove()">Click for a Surprise 💐</button>
+
+  <div class="popup" id="popup">
+    Z U L P H A 🌹
+  </div>
+
+  <script>
+    function showLove() {
+      // Show popup
+      const popup = document.getElementById("popup");
+      popup.style.display = "block";
+
+      // Hide popup after 3 seconds
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 3000);
+
+      // Create floating flowers
+      for (let i = 0; i < 20; i++) {
+        const flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = ["🌸", "🌹", "💐", "❤️"][Math.floor(Math.random() * 4)];
+        flower.style.left = Math.random() * window.innerWidth + "px";
+        flower.style.bottom = "0px";
+        document.body.appendChild(flower);
+
+        setTimeout(() => {
+          flower.remove();
+        }, 4000);
+      }
+    }
+  </script>
+
+</body>
+  </html>
