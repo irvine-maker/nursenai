@@ -1,120 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Valentine Z U L P H A</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will you be my Valentine?</title>
+<style>
     body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #ff4d6d, #c9184a);
-      font-family: 'Comic Sans MS', cursive;
-      color: white;
-      text-align: center;
-      overflow: hidden;
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        /* Gradient visible from the start */
+        background: linear-gradient(to bottom right, #ff9cd4, #ff6fa3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        transition: all 1s ease;
+        overflow: hidden;
+        position: relative;
     }
 
     h1 {
-      margin-top: 40px;
-      font-size: 3rem;
-    }
-
-    .messages {
-      margin: 30px auto;
-      max-width: 600px;
-      font-size: 1.2rem;
-      line-height: 1.8;
+        font-size: 2em;
+        margin-bottom: 40px;
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 30px;
-      background: white;
-      color: #c9184a;
-      cursor: pointer;
-      transition: transform 0.2s;
+        font-size: 1.5em;
+        padding: 15px 30px;
+        margin: 10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-    button:hover {
-      transform: scale(1.1);
+    #yes {
+        background-color: red;
+        color: white;
     }
 
-    .flower {
-      position: absolute;
-      font-size: 2rem;
-      animation: floatUp 4s linear forwards;
+    #no {
+        background-color: white;
+        color: red;
     }
 
-    @keyframes floatUp {
-      0% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-600px);
-      }
+    /* Sweet message section */
+    #sweetMessage {
+        display: none;
+        color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+        z-index: 1;
     }
 
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      color: #c9184a;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      font-size: 1.3rem;
-      z-index: 10;
+    #sweetMessage h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px #000;
     }
-  </style>
+
+    #sweetMessage p {
+        font-size: 1.5em;
+        text-shadow: 1px 1px 3px #000;
+    }
+
+    /* Watermark */
+    #watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 8em;
+        color: rgba(255, 255, 255, 0.15);
+        transform: translate(-50%, -50%) rotate(-30deg);
+        white-space: nowrap;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+    }
+</style>
 </head>
 <body>
 
-  <h1>Happy Valentine’s Day Love</h1>
+<!-- Question Section -->
+<div id="question">
+    <h1>Will you be my Valentine?</h1>
+    <div id="buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+</div>
 
-  <div class="messages">
-    <p> My love for you is more than the love i have for chapati❤️</p>
-    <p>Nakupenda sana love </p>
-  </div>
+<!-- Sweet Message Section -->
+<div id="sweetMessage">
+    <div id="watermark">Zulpha</div>
+    <h1>Yay! 💖</h1>
+    <p>You make my heart bloom every single day! 🌹💖</p>
+</div>
 
-  <button onclick="showLove()">Click for a Surprise 💐</button>
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const questionDiv = document.getElementById("question");
+const sweetMessageDiv = document.getElementById("sweetMessage");
 
-  <div class="popup" id="popup">
-    Z U L P H A 🌹
-  </div>
+let yesSize = 1;
 
-  <script>
-    function showLove() {
-      // Show popup
-      const popup = document.getElementById("popup");
-      popup.style.display = "block";
+// If user clicks NO
+noBtn.addEventListener("click", () => {
+    yesSize += 0.5;
+    yesBtn.style.transform = `scale(${yesSize})`;
 
-      // Hide popup after 3 seconds
-      setTimeout(() => {
-        popup.style.display = "none";
-      }, 3000);
-
-      // Create floating flowers
-      for (let i = 0; i < 20; i++) {
-        const flower = document.createElement("div");
-        flower.className = "flower";
-        flower.innerHTML = ["🌸", "🌹", "💐", "❤️"][Math.floor(Math.random() * 4)];
-        flower.style.left = Math.random() * window.innerWidth + "px";
-        flower.style.bottom = "0px";
-        document.body.appendChild(flower);
-
-        setTimeout(() => {
-          flower.remove();
-        }, 4000);
-      }
+    if (yesSize >= 10) {
+        yesBtn.innerText = "You have no choice ❤️";
     }
-  </script>
+});
+
+// If user clicks YES
+yesBtn.addEventListener("click", () => {
+    questionDiv.style.display = "none";
+    sweetMessageDiv.style.display = "flex";
+});
+</script>
 
 </body>
-  </html>
+</html>
