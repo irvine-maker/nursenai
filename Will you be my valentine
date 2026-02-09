@@ -24,7 +24,6 @@
         font-size: 2em;
         margin-bottom: 40px;
     }
-
     button {
         font-size: 1.5em;
         padding: 15px 30px;
@@ -38,7 +37,6 @@
         background-color: red;
         color: white;
     }
-
     #no {
         background-color: white;
         color: red;
@@ -61,13 +59,11 @@
         margin-bottom: 20px;
         text-shadow: 2px 2px 5px #000;
     }
-
     #sweetMessage p {
         font-size: 1.5em;
         text-shadow: 1px 1px 3px #000;
     }
-
-    /* Watermark */
+/* Watermark */
     #watermark {
         position: absolute;
         top: 50%;
@@ -83,7 +79,6 @@
 </style>
 </head>
 <body>
-
 <!-- Question Section -->
 <div id="question">
     <h1>Will you be my Valentine?</h1>
@@ -91,23 +86,18 @@
         <button id="yes">Yes</button>
         <button id="no">No</button>
     </div>
-</div>
-
 <!-- Sweet Message Section -->
 <div id="sweetMessage">
     <div id="watermark">Zulpha</div>
-    <h1>Yay! 💖</h1>
-    <p>You make my heart bloom every single day! 🌹💖</p>
+    <h1>the love i have for you is more than the love i have for chapati</h1>
+    <p>nakupenda sana love</p>
 </div>
-
 <script>
 const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
 const questionDiv = document.getElementById("question");
 const sweetMessageDiv = document.getElementById("sweetMessage");
-
 let yesSize = 1;
-
 // If user clicks NO
 noBtn.addEventListener("click", () => {
     yesSize += 0.5;
