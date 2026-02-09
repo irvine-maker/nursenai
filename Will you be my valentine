@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+
+        button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yes {
+            background-color: red;
+            color: white;
+        }
+
+        #no {
+            background-color: white;
+            color: red;
+        }
+
+        /* Sweet message hidden by default */
+        #sweetMessage {
+            display: none;
+        }
+
+        #sweetMessage h1 {
+            font-size: 3em;
+            color: red;
+            margin: 20px;
+        }
+
+        #sweetMessage p {
+            font-size: 1.5em;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Question Section -->
+<div id="question">
+    <h1>Will you be my Valentine?</h1>
+    <div id="buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+</div>
+
+<!-- Sweet Message Section -->
+<div id="sweetMessage">
+    <h1>Yay! 💖</h1>
+    <p>The love i have for you is more than the love i have for chapati. 🌹❤️</p>
+<p>nakupenda sana love</p>
+</div>
+
+<script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const buttonsDiv = document.getElementById("buttons");
+    const questionDiv = document.getElementById("question");
+    const sweetMessageDiv = document.getElementById("sweetMessage");
+
+    let yesSize = 1; // scale factor
+
+    // User clicks NO
+    noBtn.addEventListener("click", () => {
+        yesSize += 0.5; // increase yes button size
+        yesBtn.style.transform = `scale(${yesSize})`;
+
+        if (yesSize >= 10) { // max size to fill screen
+            yesBtn.innerText = "You have no choice ❤️";
+        }
+    });
+
+    // User clicks YES
+    yesBtn.addEventListener("click", () => {
+        // Hide question, show sweet message
+        questionDiv.style.display = "none";
+        sweetMessageDiv.style.display = "block";
+    });
+</script>
+
+</body>
+</html>
