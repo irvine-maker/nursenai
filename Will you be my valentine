@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will you be my Valentine?</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: pink;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            text-align: center;
-            transition: all 0.5s ease;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will you be my Valentine?</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        transition: all 1s ease;
+        overflow: hidden;
+    }
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 40px;
-        }
+    h1 {
+        font-size: 2em;
+        margin-bottom: 40px;
+    }
 
-        button {
-            font-size: 1.5em;
-            padding: 15px 30px;
-            margin: 10px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    button {
+        font-size: 1.5em;
+        padding: 15px 30px;
+        margin: 10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+#yes {
+        background-color: red;
+        color: white;
+    }
 
-        #yes {
-            background-color: red;
-            color: white;
-        }
+    #no {
+        background-color: white;
+        color: red;
+    }
+ /* Sweet message section */
+    #sweetMessage {
+        display: none;
+        color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+    }
+ #sweetMessage h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px #000;
+    }
 
-        #no {
-            background-color: white;
-            color: red;
-        }
+    #sweetMessage p {
+        font-size: 1.5em;
+        text-shadow: 1px 1px 3px #000;
+    }
 
-        /* Sweet message hidden by default */
-        #sweetMessage {
-            display: none;
-        }
-
-        #sweetMessage h1 {
-            font-size: 3em;
-            color: red;
-            margin: 20px;
-        }
-
-        #sweetMessage p {
-            font-size: 1.5em;
-            color: darkred;
-        }
-    </style>
+    /* Watermark */
+    #watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 8em;
+        color: rgba(255, 255, 255, 0.15);
+        transform: translate(-50%, -50%) rotate(-30deg);
+        white-space: nowrap;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+    }
+</style>
 </head>
 <body>
 
@@ -74,37 +95,36 @@
 
 <!-- Sweet Message Section -->
 <div id="sweetMessage">
+    <div id="watermark">Zulpha</div>
     <h1>Yay! 💖</h1>
-    <p>The love i have for you is more than the love i have for chapati. 🌹❤️</p>
-<p>nakupenda sana love</p>
+    <p>You make my heart bloom every single day! 🌹💖</p>
 </div>
 
 <script>
-    const yesBtn = document.getElementById("yes");
-    const noBtn = document.getElementById("no");
-    const buttonsDiv = document.getElementById("buttons");
-    const questionDiv = document.getElementById("question");
-    const sweetMessageDiv = document.getElementById("sweetMessage");
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const questionDiv = document.getElementById("question");
+const sweetMessageDiv = document.getElementById("sweetMessage");
 
-    let yesSize = 1; // scale factor
+let yesSize = 1;
 
-    // User clicks NO
-    noBtn.addEventListener("click", () => {
-        yesSize += 0.5; // increase yes button size
-        yesBtn.style.transform = `scale(${yesSize})`;
-
-        if (yesSize >= 10) { // max size to fill screen
-            yesBtn.innerText = "You have no choice ❤️";
-        }
-    });
-
-    // User clicks YES
-    yesBtn.addEventListener("click", () => {
-        // Hide question, show sweet message
-        questionDiv.style.display = "none";
-        sweetMessageDiv.style.display = "block";
-    });
+// If user clicks NO
+noBtn.addEventListener("click", () => {
+    yesSize += 0.5;
+    yesBtn.style.transform = `scale(${yesSize})`;
+   if (yesSize >= 10) {
+        yesBtn.innerText = "You have no choice ❤️";
+    }
+});
+// If user clicks YES
+yesBtn.addEventListener("click", () => {
+    // Hide question
+    questionDiv.style.display = "none";
+  // Show sweet message
+    sweetMessageDiv.style.display = "flex";
+ // Change background to gradient
+    document.body.style.background = "linear-gradient(to bottom right, #ff9cd4, #ff6fa3)";
+});
 </script>
-
 </body>
 </html>
