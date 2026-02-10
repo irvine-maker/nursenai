@@ -1,133 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Will you be my Valentine Zulpha?</title>
-<style>
+  <meta charset="UTF-8">
+  <title>Valentine 🌹</title>
+  <style>
     body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Arial', sans-serif;
-        background-color: darkred;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        text-align: center;
-        transition: all 1s ease;
-        overflow: hidden;
-        position: relative;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #c4002f;
+      color: white;
+      text-align: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .active {
+      display: flex;
     }
 
     h1 {
-        font-size: 2em;
-        margin-bottom: 40px;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hearts, .flowers {
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
 
     button {
-        font-size: 1.5em;
-        padding: 15px 30px;
-        margin: 10px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
     }
 
-    #yes {
-        background-color: white;
-        color: red;
+    #yesBtn {
+      background-color: #ffb6c1;
+      color: #600018;
     }
 
-    #no {
-        background-color: white;
-        color: red;
+    #noBtn {
+      background-color: white;
+      color: #600018;
+      position: absolute;
     }
 
-    /* Sweet message section */
-    #sweetMessage {
-        display: none;
-        color: black;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-        padding: 20px;
-        z-index: 1;
+    .sweet-text {
+      max-width: 600px;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      padding: 20px;
     }
-
-    #sweetMessage h1 {
-        font-size: 3em;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 5px #000;
-    }
-
-    #sweetMessage p {
-        font-size: 1.5em;
-        text-shadow: 1px 1px 3px #000;
-    }
-
-    /* Watermark */
-    #watermark {
-        position: top;
-        top: 90%;
-        left: 30%;
-        font-size: 1.2em;
-        color: white;
-        text-shadow: 1px 1px 4px black;
-        transform: translate(-50%, -50%) rotate(-30deg);
-        white-space: nowrap;
-        pointer-events: none;
-        user-select: none;
-        z-index: 0;
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<!-- Question Section -->
-<div id="question">
+  <!-- PAGE 1 -->
+  <div class="page active" id="page1">
+    <div class="hearts">❤️ 💖 💕 💘 ❤️</div>
     <h1>Will you be my Valentine?</h1>
-    <div id="buttons">
-        <button id="yes">Yes</button>
-        <button id="no">No</button>
+    <div>
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 😅</button>
     </div>
-</div>
+  </div>
 
-<!-- Sweet Message Section -->
-<div id="sweetMessage">
-    <div id="watermark"><em>Zulpha</em></div>
-    <h1>Its us Forever❤️</h1>
-    <p>nakupenda sana love🌹</p>
-</div>
+  <!-- PAGE 2 -->
+  <div class="page" id="page2">
+    <div class="flowers">🌸 🌹 🌷 🌺 🌼</div>
+    <h1>zulpha</h1></h1>
+    <div class="sweet-text">
+      the love i have for you is more than the love i have for chapati❤️
+    </div>
+    <div class="flowers">🌷 🌺 🌼 🌸 🌹</div>
+  </div>
 
-<script>
-const yesBtn = document.getElementById("yes");
-const noBtn = document.getElementById("no");
-const questionDiv = document.getElementById("question");
-const sweetMessageDiv = document.getElementById("sweetMessage");
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
 
-let yesSize = 1;
-
-// If user clicks NO
-noBtn.addEventListener("click", () => {
-    yesSize += 0.5;
-    yesBtn.style.transform = `scale(${yesSize})`;
-
-    if (yesSize >= 10) {
-        yesBtn.innerText = "You have no choice ❤️";
+    function moveButton() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
     }
-});
 
-// If user clicks YES
-yesBtn.addEventListener("click", () => {
-    questionDiv.style.display = "none";
-    sweetMessageDiv.style.display = "flex";
-});
-</script>
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("click", moveButton);
+
+    yesBtn.addEventListener("click", () => {
+      page1.classList.remove("active");
+      page2.classList.add("active");
+    });
+
+    // Initial position for No button
+    moveButton();
+  </script>
 
 </body>
-</html>
+        </html>
