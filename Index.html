@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Valentine 🌹</title>
+  <title>Valentine ❤️</title>
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Arial", sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     body {
@@ -19,16 +19,16 @@
       overflow: hidden;
     }
 
-    /* COMMON PAGE STYLE */
+    /* PAGE LAYOUT */
     .page {
       display: none;
       height: 100vh;
       width: 100%;
+      position: relative;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       text-align: center;
-      position: relative;
     }
 
     .active {
@@ -40,26 +40,26 @@
       margin-bottom: 20px;
     }
 
-    /* HEARTS */
     .hearts {
       font-size: 2rem;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
-    /* BUTTON CONTAINER */
+    /* BUTTON ROW */
     .buttons {
       display: flex;
-      gap: 40px;
+      gap: 50px;
       margin-top: 30px;
       position: relative;
     }
 
     button {
-      padding: 14px 30px;
+      padding: 14px 32px;
       font-size: 1.1rem;
       border-radius: 30px;
       border: none;
       cursor: pointer;
+      transition: transform 0.15s ease;
     }
 
     #yesBtn {
@@ -70,16 +70,16 @@
     #noBtn {
       background-color: white;
       color: #5a0015;
-      position: relative;
+      position: relative; /* IMPORTANT: stays in flow initially */
     }
 
-    /* PAGE 2 WATERMARK FLOWERS */
+    /* PAGE 2 WATERMARK */
     .watermark {
       position: absolute;
       inset: 0;
       background-image: repeating-linear-gradient(
         45deg,
-        rgba(255, 192, 203, 0.12) 0px,
+        rgba(255, 192, 203, 0.12),
         rgba(255, 192, 203, 0.12) 20px,
         transparent 20px,
         transparent 40px
@@ -101,10 +101,10 @@
 
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
-    <div class="hearts">❤️ 💖 💕 💘 ❤️</div>
+    <div class="hearts"></div>
     <h1>Will you be my Valentine?</h1>
 
-    <div class="buttons">
+    <div class="buttons" id="buttonArea">
       <button id="yesBtn">Yes </button>
       <button id="noBtn">No </button>
     </div>
@@ -113,10 +113,9 @@
   <!-- PAGE 2 -->
   <div class="page" id="page2">
     <div class="watermark"></div>
-
     <h1>Its us forever❤️</h1>
     <div class="sweet-text">
-      nakupenda sana love🌹 
+      nakupenda sana love 🌹
     </div>
   </div>
 
@@ -126,10 +125,24 @@
     const page1 = document.getElementById("page1");
     const page2 = document.getElementById("page2");
 
+    let moved = false;
+
     function moveNoButton() {
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-      noBtn.style.position = "absolute";
+      if (!moved) {
+        // Switch to absolute positioning ONLY after interaction
+        const rect = noBtn.getBoundingClientRect();
+        noBtn.style.position = "absolute";
+        noBtn.style.left = rect.left + "px";
+        noBtn.style.top = rect.top + "px";
+        moved = true;
+      }
+
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     }
