@@ -14,7 +14,7 @@
 
     body {
       height: 100vh;
-      background-color: white;   /* PAGE 1 BACKGROUND */
+      background-color: red;   /* PAGE 1 BACKGROUND */
       color: black;              /* TEXT BLACK */
       overflow: hidden;
     }
@@ -78,19 +78,6 @@
       color: black;
     }
 
-    .watermark {
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        45deg,
-        rgba(0, 0, 0, 0.08),
-        rgba(0, 0, 0, 0.08) 20px,
-        transparent 20px,
-        transparent 40px
-      );
-      pointer-events: none;
-    }
-
     .sweet-text {
       max-width: 600px;
       font-size: 1.4rem;
@@ -117,7 +104,7 @@
 
   <!-- PAGE 2 -->
   <div class="page" id="page2">
-    <div class="watermark"></div>
+  </div>
     <h1></h1>
 
 
@@ -158,6 +145,5 @@
       page2.classList.add("active");
     });
   </script>
-
 </body>
   </html>
