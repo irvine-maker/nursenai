@@ -14,8 +14,8 @@
 
     body {
       height: 100vh;
-      background-color: #b3002d;
-      color: white;
+      background-color: white;   /* PAGE 1 BACKGROUND */
+      color: black;              /* TEXT BLACK */
       overflow: hidden;
     }
 
@@ -63,23 +63,28 @@
 
     #yesBtn {
       background-color: #ffb6c1;
-      color: #5a0015;
+      color: black;
     }
 
     #noBtn {
       background-color: white;
-      color: #5a0015;
-      position: relative; /* starts symmetric */
+      color: black;
+      position: relative;
     }
 
     /* PAGE 2 */
+    #page2 {
+      background-color: red;   /* SECOND PAGE RED */
+      color: black;
+    }
+
     .watermark {
       position: absolute;
       inset: 0;
       background-image: repeating-linear-gradient(
         45deg,
-        rgba(255, 192, 203, 0.12),
-        rgba(255, 192, 203, 0.12) 20px,
+        rgba(0, 0, 0, 0.08),
+        rgba(0, 0, 0, 0.08) 20px,
         transparent 20px,
         transparent 40px
       );
@@ -101,8 +106,8 @@
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
     <div class="hearts"></div>
-    <h1><strong>Welcome</strong> <em>Zulpha</em></h1>
-    <h2>Will you be my valentine🌹?</h2>
+    <h1><strong>Welcome</strong> <em>Zulpha<em></h1>
+      <h2>Will you be my valentine🌹💍?</h2>
 
     <div class="buttons" id="buttonWrapper">
       <button id="yesBtn">Yes </button>
@@ -113,11 +118,8 @@
   <!-- PAGE 2 -->
   <div class="page" id="page2">
     <div class="watermark"></div>
-    <h1>Its us forever❤️</h1>
-    <div class="sweet-text">
-      Nakupenda sana love 🌹
-    </div>
-  </div>
+    <h1></h1>
+
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -130,7 +132,6 @@
     function moveNoButton() {
       const pageRect = page1.getBoundingClientRect();
 
-      // Switch to absolute positioning once
       if (!activated) {
         const btnRect = noBtn.getBoundingClientRect();
         noBtn.style.position = "absolute";
@@ -159,4 +160,4 @@
   </script>
 
 </body>
-</html>
+  </html>
