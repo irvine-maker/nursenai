@@ -22,7 +22,7 @@
     .page {
       display: none;
       height: 100vh;
-      width: 100%;
+      width: 100vw;
       position: relative;
       justify-content: center;
       align-items: center;
@@ -44,6 +44,7 @@
       margin-bottom: 10px;
     }
 
+    /* BUTTON AREA */
     .buttons {
       display: flex;
       gap: 50px;
@@ -57,6 +58,7 @@
       border-radius: 30px;
       border: none;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     #yesBtn {
@@ -67,10 +69,10 @@
     #noBtn {
       background-color: white;
       color: #5a0015;
-      position: relative;
+      position: relative; /* starts symmetric */
     }
 
-    /* PAGE 2 WATERMARK */
+    /* PAGE 2 */
     .watermark {
       position: absolute;
       inset: 0;
@@ -98,10 +100,10 @@
 
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
-    <div class="hearts"></div>
+    <div class="hearts">❤️ 💖 💕 💘 ❤️</div>
     <h1>Will you be my Valentine?</h1>
 
-    <div class="buttons">
+    <div class="buttons" id="buttonWrapper">
       <button id="yesBtn">Yes </button>
       <button id="noBtn">No </button>
     </div>
@@ -112,7 +114,7 @@
     <div class="watermark"></div>
     <h1>Its us forever❤️</h1>
     <div class="sweet-text">
-      nakupenda sana love 🌹
+      Nakupenda sana love 🌹
     </div>
   </div>
 
@@ -125,18 +127,19 @@
     let activated = false;
 
     function moveNoButton() {
-      // Convert to absolute only once
+      const pageRect = page1.getBoundingClientRect();
+
+      // Switch to absolute positioning once
       if (!activated) {
-        const rect = noBtn.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
         noBtn.style.position = "absolute";
-        noBtn.style.left = rect.left + "px";
-        noBtn.style.top = rect.top + "px";
+        noBtn.style.left = btnRect.left - pageRect.left + "px";
+        noBtn.style.top = btnRect.top - pageRect.top + "px";
         activated = true;
       }
 
-      const padding = 10;
-      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+      const maxX = pageRect.width - noBtn.offsetWidth;
+      const maxY = pageRect.height - noBtn.offsetHeight;
 
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
