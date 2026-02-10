@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Valentine 🌹</title>
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #c4002f;
-      color: white;
-      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Arial", sans-serif;
+    }
+
+    body {
       height: 100vh;
+      background-color: #b3002d;
+      color: white;
       overflow: hidden;
     }
 
+    /* COMMON PAGE STYLE */
     .page {
       display: none;
       height: 100vh;
       width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      text-align: center;
+      position: relative;
     }
 
     .active {
@@ -31,33 +36,55 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       margin-bottom: 20px;
     }
 
-    .hearts, .flowers {
+    /* HEARTS */
+    .hearts {
       font-size: 2rem;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+
+    /* BUTTON CONTAINER */
+    .buttons {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+      position: relative;
     }
 
     button {
-      padding: 12px 25px;
+      padding: 14px 30px;
       font-size: 1.1rem;
-      border: none;
       border-radius: 30px;
+      border: none;
       cursor: pointer;
-      margin: 10px;
     }
 
     #yesBtn {
       background-color: #ffb6c1;
-      color: #600018;
+      color: #5a0015;
     }
 
     #noBtn {
       background-color: white;
-      color: #600018;
+      color: #5a0015;
+      position: relative;
+    }
+
+    /* PAGE 2 WATERMARK FLOWERS */
+    .watermark {
       position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 192, 203, 0.12) 0px,
+        rgba(255, 192, 203, 0.12) 20px,
+        transparent 20px,
+        transparent 40px
+      );
+      pointer-events: none;
     }
 
     .sweet-text {
@@ -65,29 +92,32 @@
       font-size: 1.4rem;
       line-height: 1.6;
       padding: 20px;
+      z-index: 1;
     }
   </style>
 </head>
+
 <body>
 
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
     <div class="hearts">❤️ 💖 💕 💘 ❤️</div>
     <h1>Will you be my Valentine?</h1>
-    <div>
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 😅</button>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes </button>
+      <button id="noBtn">No </button>
     </div>
   </div>
 
   <!-- PAGE 2 -->
   <div class="page" id="page2">
-    <div class="flowers">🌸 🌹 🌷 🌺 🌼</div>
-    <h1>zulpha</h1></h1>
+    <div class="watermark"></div>
+
+    <h1>its us forever❤️</h1>
     <div class="sweet-text">
-      the love i have for you is more than the love i have for chapati❤️
+      nakupenda sana love🌹 
     </div>
-    <div class="flowers">🌷 🌺 🌼 🌸 🌹</div>
   </div>
 
   <script>
@@ -96,24 +126,22 @@
     const page1 = document.getElementById("page1");
     const page2 = document.getElementById("page2");
 
-    function moveButton() {
+    function moveNoButton() {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
       const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
     }
 
-    noBtn.addEventListener("mouseover", moveButton);
-    noBtn.addEventListener("click", moveButton);
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
       page1.classList.remove("active");
       page2.classList.add("active");
     });
-
-    // Initial position for No button
-    moveButton();
   </script>
 
 </body>
-        </html>
+</html>
