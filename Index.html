@@ -15,7 +15,7 @@
     body {
       height: 100vh;
       background-color: darkred;   /* PAGE 1 BACKGROUND */
-      color: black;              /* TEXT BLACK */
+      color: black;                /* TEXT COLOR */
       overflow: hidden;
     }
 
@@ -28,6 +28,7 @@
       align-items: center;
       flex-direction: column;
       text-align: center;
+      padding: 20px;
     }
 
     .active {
@@ -37,6 +38,11 @@
     h1 {
       font-size: 2.6rem;
       margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
     }
 
     .hearts {
@@ -59,6 +65,7 @@
       border: none;
       cursor: pointer;
       white-space: nowrap;
+      transition: all 0.2s ease;
     }
 
     #yesBtn {
@@ -74,17 +81,23 @@
 
     /* PAGE 2 */
     #page2 {
-      background-color: pink;   /* SECOND PAGE RED */
-      
+      background-color: pink;   /* SECOND PAGE BACKGROUND */
+      color: purple;
     }
 
-    .sweet-text {
+    #page2 h1 {
+      color: darkred;
+    }
+
+    #page2 h2 {
       color: purple;
-      max-width: 600px;
-      font-size: 1.6rem;
-      line-height: 1.6;
-      padding: 20px;
-      z-index: 1;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+
+    #page2 p {
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -93,26 +106,24 @@
 
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
-    <div class="hearts"></div>
-    <h1><strong>Welcome</strong> <em>Zulpha<em></h1>
-      <h2>Will you be my valentine🌹💍?</h2>
+    <div class="hearts">❤️❤️❤️</div>
+    <h1><strong>Welcome</strong> <em>Zulpha</em></h1>
+    <h2>Will you be my valentine🌹💍?</h2>
 
     <div class="buttons" id="buttonWrapper">
-      <button id="yesBtn">Yes </button>
-      <button id="noBtn">No </button>
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
     </div>
   </div>
 
   <!-- PAGE 2 -->
   <div class="page" id="page2">
-  </div>
     <p>❤️</p>
-      <h1>Dear dearr valentine,😍</h1>
-      <h2>You are always gonna be my one and only, my love.</h2>
-        <h2>The amount of crazy you make me is always gonna know or anyyy bounds </h2>
-      
-<h2>Thank you for your YESS mi laidyy❤️</h2>
-      
+    <h1>Dear dear valentine, 😍</h1>
+    <h2>You are always gonna be my one and only, my love.</h2>
+    <h2>The amount of crazy you make me is always gonna know no bounds.</h2>
+    <h2>Thank you for your YES, my lady ❤️</h2>
+  </div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -151,5 +162,6 @@
       page2.classList.add("active");
     });
   </script>
+
 </body>
-  </html>
+</html>
